@@ -46,6 +46,18 @@ public class Camera extends GameObject {
         // Where GH_FOV has been declared as a global variable.
         // Finally, pass the result into projection matrix.
 
+        // 計算螢幕比例
+        float aspect = (float) wid / hei;
+        GH_FOV = tan(GH_FOV/0.5f);
+
+        projection = Matrix4.Identity();
+        projection.m[0] = 1.0f / (aspect*GH_FOV); 
+        projection.m[5] = 1.0f / GH_FOV;           
+        projection.m[10] = -(far + near) / (far - near);
+        projection.m[11] = -1.0f;            
+        projection.m[14] = -(2.0f * far * near) / (far - near); 
+        projection.m[15] = 0.0f;
+
     }
 
     void setPositionOrientation(Vector3 pos, float rotX, float rotY) {
@@ -65,5 +77,31 @@ public class Camera extends GameObject {
         // Finally, pass the result into worldView matrix.
 
         worldView = Matrix4.Identity();
+        Vector3 topVector = Vector3.UnitY();
+
+        // 計算方向向量
+        Vector3 zAxis = Vector3.unit_vector(Vector3.sub(pos, lookat)); // 視圖的 Z 軸方向
+        Vector3 xAxis = Vector3.unit_vector(Vector3.cross(topVector, zAxis)); // 視圖的 X 軸方向
+        Vector3 yAxis = Vector3.unit_vector(Vector3.cross(zAxis, xAxis)); // 視圖的 Y 軸方向
+
+        worldView.m[0] = xAxis.x;
+        worldView.m[1] = yAxis.x;
+        worldView.m[2] = -zAxis.x;
+        worldView.m[3] = -(xAxis.x * pos.x + yAxis.x * pos.y - zAxis.x * pos.z);
+
+        worldView.m[4] = xAxis.y;
+        worldView.m[5] = yAxis.y;
+        worldView.m[6] = -zAxis.y;
+        worldView.m[7] = -(xAxis.y * pos.x + yAxis.y * pos.y - zAxis.y * pos.z);
+
+        worldView.m[8] = xAxis.z;
+        worldView.m[9] = yAxis.z;
+        worldView.m[10] = -zAxis.z;
+        worldView.m[11] = -(xAxis.z * pos.x + yAxis.z * pos.y - zAxis.z * pos.z);
+
+        worldView.m[12] = 0.0f;
+        worldView.m[13] = 0.0f;
+        worldView.m[14] = 0.0f;
+        worldView.m[15] = 1.0f;
     }
 }
