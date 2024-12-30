@@ -22,7 +22,10 @@ Then transform each vertex's normal vector to world space (w_normal)
 ![alt text](image-2.png)  
 
 ### PhongFragmentShader
-
+Calculate ambient light and diffuse light  
+Multiply the albedo by the ambient light and diffuse light to handle the surface color  
+Calculate specular light and produce the final lighting result  
+![alt text](image-3.png)  
 
 
 

@@ -54,8 +54,6 @@ public class PhongFragmentShader extends FragmentShader {
 
         // return 包含最終顏色和 Alpha 值的 Vector4
         return new Vector4(illuminate.x(), illuminate.y(), illuminate.z(), 1.0);
-
-        
     }
 }
 
