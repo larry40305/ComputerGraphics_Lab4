@@ -84,12 +84,12 @@ Code:
 ![alt text](/Photo/image-9.png)  
 
 ## Demo
-<video controls src="/Photo/Demo.mp4" title="Title"></video>  
+Demo.mp4 is the demo video of the HW4.    
   
 ## Conclusion
 I complete all the tasks with ChatGPT.
 I use ChatGPT to help me figure out some part of the source code and help me recognize some concept of task.  
 I also collect relevant information from the Internet.  
 I revise some part of previous Hw3 because the program cannot run correctly.  
-Demo.mp4 is the demo video of the HW4.  
+
 
