@@ -8,7 +8,7 @@ Then apply Perspective Correction
 ![alt text](image.png)  
 
 ## Phong Shading
-== PhongMaterial ==
+=== PhongMaterial ===
 
 
 
