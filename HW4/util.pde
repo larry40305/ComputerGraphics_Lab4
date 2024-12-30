@@ -161,9 +161,32 @@ float[] barycentric(Vector3 P, Vector4[] verts) {
     // Please notice that you should use Perspective-Correct Interpolation otherwise
     // you will get wrong answer.
 
-    float[] result = { 0.0, 0.0, 0.0 };
+    Vector3 v0 = Vector3.sub(B, A);
+    Vector3 v1 = Vector3.sub(C, A);
+    Vector3 v2 = Vector3.sub(P, A);
 
-    return result;
+    float d00 = Vector3.dot(v0, v0);
+    float d01 = Vector3.dot(v0, v1);
+    float d11 = Vector3.dot(v1, v1);
+    float d20 = Vector3.dot(v2, v0);
+    float d21 = Vector3.dot(v2, v1);
+    float denom = d00 * d11 - d01 * d01;
+
+    float beta = (d11 * d20 - d01 * d21) / denom;
+    float gamma = (d00 * d21 - d01 * d20) / denom;
+    float alpha = 1.0f - beta - gamma;
+
+    alpha *= AW.w;
+    beta  *= BW.w;
+    gamma *= CW.w;
+
+    float sum = alpha + beta + gamma;
+
+    alpha /= sum;
+    beta /= sum;
+    gamma /= sum;
+
+    return new float[] { alpha, beta, gamma };
 }
 
 Vector3 interpolation(float[] abg, Vector3[] v) {

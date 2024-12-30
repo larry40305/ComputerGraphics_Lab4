@@ -43,7 +43,7 @@ void setDepthBuffer(){
 }
 
 void draw() {
-    backGouraud(255);
+    background(255);
 
     engine.run();
     cameraControl();
@@ -71,7 +71,7 @@ void cameraControl() {
     // ViewMatrix.
     // Hint : Use keyboard event and mouse click event to change the position of the
     // camera.
-
+    /*
     float moveSpeed = 0.1f; // the speed of moving
 
     // use keyboard
@@ -103,5 +103,6 @@ void cameraControl() {
     }
     
     main_camera.setPositionOrientation(cam_position, lookat);
+    */
 
 }

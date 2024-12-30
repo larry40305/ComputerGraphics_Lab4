@@ -11,7 +11,7 @@ public class Camera extends GameObject {
         hei = 256;
         worldView.makeIdentity();
         projection.makeIdentity();
-        transform.position = new Vector3(0, 0, -50);
+        transform.position = new Vector3(0, 0, 0);
         name = "Camera";
     }
 
@@ -46,6 +46,7 @@ public class Camera extends GameObject {
         // Where GH_FOV has been declared as a global variable.
         // Finally, pass the result into projection matrix.
 
+        /*
         // 計算螢幕比例
         float aspect = (float) wid / hei;
         GH_FOV = tan(GH_FOV/0.5f);
@@ -57,6 +58,19 @@ public class Camera extends GameObject {
         projection.m[11] = -1.0f;            
         projection.m[14] = -(2.0f * far * near) / (far - near); 
         projection.m[15] = 0.0f;
+        */
+        float e = 1.0f / tan(GH_FOV * 2*PI / 360.0f);
+        float a = float(h) / float(w);
+        float d = near - far;
+
+        // Creating the projection matrix for a perspective projection
+        projection.makeZero(); // Resetting the projection matrix to zero
+        projection.m[0] = 1;
+        projection.m[5] = a;
+        projection.m[10] = far / -d * (1/e);
+        projection.m[11] = (near * far) / d * (1/e);
+        projection.m[14] = 1/e;
+        projection = Matrix4.Identity();
 
     }
 
