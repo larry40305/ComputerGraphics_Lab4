@@ -146,7 +146,12 @@ public float getDepth(float x, float y, Vector3[] vertex) {
 }
 
 float[] barycentric(Vector3 P, Vector4[] verts) {
-
+    // TODO HW4
+    // Calculate the barycentric coordinates of point P in the triangle verts using
+    // the barycentric coordinate system.
+    // Please notice that you should use Perspective-Correct Interpolation otherwise
+    // you will get wrong answer.
+    
     Vector3 A = verts[0].homogenized();
     Vector3 B = verts[1].homogenized();
     Vector3 C = verts[2].homogenized();
@@ -154,12 +159,6 @@ float[] barycentric(Vector3 P, Vector4[] verts) {
     Vector4 AW = verts[0];
     Vector4 BW = verts[1];
     Vector4 CW = verts[2];
-
-    // TODO HW4
-    // Calculate the barycentric coordinates of point P in the triangle verts using
-    // the barycentric coordinate system.
-    // Please notice that you should use Perspective-Correct Interpolation otherwise
-    // you will get wrong answer.
 
     Vector3 v0 = Vector3.sub(B, A);
     Vector3 v1 = Vector3.sub(C, A);
@@ -179,9 +178,7 @@ float[] barycentric(Vector3 P, Vector4[] verts) {
     alpha *= AW.w;
     beta  *= BW.w;
     gamma *= CW.w;
-
     float sum = alpha + beta + gamma;
-
     alpha /= sum;
     beta /= sum;
     gamma /= sum;
