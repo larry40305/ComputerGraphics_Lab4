@@ -109,6 +109,7 @@ public class GouraudMaterial extends Material {
     }
 
     Vector4 fragmentShader(Vector3 position, Vector4[] varing) {
+        //直接使用插值後的顏色
         return varing[0];
     }
 }
